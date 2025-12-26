@@ -5,6 +5,7 @@ import { openAPI } from "better-auth/plugins";
 import { schema } from "@/lib/schema/index";
 import { bearer } from "better-auth/plugins";
 import { betterAuthFields } from "./schema/field-mappings";
+import { jwtExpiresInSeconds } from "./token";
 
 export const auth = betterAuth({
   basePath: "/api",
@@ -30,7 +31,7 @@ export const auth = betterAuth({
   }),
   session: {
     ...betterAuthFields.session,
-    expiresIn: 60 * 60 * 24 * 7,
+    expiresIn: jwtExpiresInSeconds,
     cookieCache: {
       enabled: true,
       maxAge: 60 * 5,
